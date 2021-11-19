@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpikesController : MonoBehaviour
 {
-    public Rigidbody2D rbPlayer;
+    public GameObject Player;
     // Start is called before the first frame update
 
     // Update is called once per frame
@@ -13,8 +13,7 @@ public class SpikesController : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            Debug.Log("Cokolwiek");
-            rbPlayer.transform.position = new Vector2(-10.0f, -2.0f);
+            Player.transform.position = new Vector2(50.0f, 5.0f);
         }
         
     }

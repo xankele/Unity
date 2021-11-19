@@ -16,7 +16,7 @@ public class FallController : MonoBehaviour
     {
         if (transform.position.y < -50.0f)
         {
-            transform.position = new Vector2(-10.0f, -2.0f);
+            transform.position = new Vector2(50.0f, 5.0f);
         }
 
     }

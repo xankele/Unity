@@ -9,11 +9,13 @@ public class GameManager : MonoBehaviour
     public GameObject StartPanel;
     public GameObject LevelCompletedPanel;
     public GameObject EndPanel;
-    public GameObject[] Levels;
+    public GameObject[] Levels; 
 
     private GameObject _currentLevel;
     bool _isSwitchingState;
     public static GameManager Instance;
+
+
 
     State _state;
 
@@ -69,14 +71,13 @@ public class GameManager : MonoBehaviour
                 {
                     _currentLevel = Instantiate(Levels[_level]);
                     Player.SetActive(true);
-                    Player.transform.position = new Vector2(-10.0f, -2.0f);
+                    Player.transform.position = new Vector2(50.0f, 5.0f);
                 }
                 break;
             case State.LevelCompleted:
                 LevelCompletedPanel.SetActive(true);
                 Destroy(_currentLevel);
                 Level++;
-                Player.SetActive(false);
                 LevelCompletedPanel.SetActive(true);
                 SwitchState(State.LoadLevel, 2f);
                 break;
@@ -107,7 +108,6 @@ public class GameManager : MonoBehaviour
         {
             case State.Start:
                 StartPanel.SetActive(false);
-
                 break;
             case State.Play:
                 break;
