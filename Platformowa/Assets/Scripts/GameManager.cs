@@ -15,8 +15,6 @@ public class GameManager : MonoBehaviour
     bool _isSwitchingState;
     public static GameManager Instance;
 
-
-
     State _state;
 
     private int _level;
