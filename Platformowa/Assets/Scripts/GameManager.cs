@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
     public GameObject StartPanel;
     public GameObject LevelCompletedPanel;
     public GameObject EndPanel;
-    public GameObject[] Levels; 
-
+    public GameObject[] Levels;
+    public Rigidbody2D rb;
     private GameObject _currentLevel;
     bool _isSwitchingState;
     public static GameManager Instance;
@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         Instance = this;
         SwitchState(State.Start);
     }
@@ -54,52 +55,56 @@ public class GameManager : MonoBehaviour
         {
             case State.Start:
                 StartPanel.SetActive(true);
+                rb.constraints = RigidbodyConstraints2D.FreezePosition;
                 break;
             case State.Play:
                 Level = 0;
-                Player.SetActive(true);
+                //Player.SetActive(true);
                 SwitchState(State.LoadLevel);
                 break;
             case State.LoadLevel:
                 if(Level >= Levels.Length)
                 {
-                    SwitchState(State.EndPanel, 5f);
+                    SwitchState(State.End, 2f);
                 }
                 else
                 {
+                    rb.constraints = RigidbodyConstraints2D.None;
+                    rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                     _currentLevel = Instantiate(Levels[_level]);
-                    Player.SetActive(true);
                     Player.transform.position = new Vector2(50.0f, 5.0f);
                 }
                 break;
             case State.LevelCompleted:
+                rb.constraints = RigidbodyConstraints2D.FreezePosition;
                 LevelCompletedPanel.SetActive(true);
                 Destroy(_currentLevel);
                 Level++;
-                LevelCompletedPanel.SetActive(true);
                 SwitchState(State.LoadLevel, 2f);
                 break;
-            case State.EndPanel:
+            case State.End:
+                rb.constraints = RigidbodyConstraints2D.FreezePosition;
                 EndPanel.SetActive(true);
+                SwitchState(State.Start, 2f);
                 break;
         }
     }
-    private void Update()
-    {
-        switch (_state)
-        {
-            case State.Start:
-                break;
-            case State.Play:
-                break;
-            case State.LoadLevel:
-                break;
-            case State.LevelCompleted:
-                break;
-            case State.EndPanel:
-                break;
-        }
-    }
+    //private void Update()
+    //{
+    //    switch (_state)
+    //    {
+    //        case State.Start:
+    //            break;
+    //        case State.Play:
+    //            break;
+    //        case State.LoadLevel:
+    //            break;
+    //        case State.LevelCompleted:
+    //            break;
+    //        case State.End:
+    //            break;
+    //    }
+    //}
     void EndState()
     {
         switch (_state)
@@ -114,8 +119,8 @@ public class GameManager : MonoBehaviour
             case State.LevelCompleted:
                 LevelCompletedPanel.SetActive(false);
                 break;
-            case State.EndPanel:
-                StartPanel.SetActive(true);
+            case State.End:
+                EndPanel.SetActive(false);
                 break;
         }
     }
@@ -126,5 +131,5 @@ public enum State
     Play,
     LevelCompleted,
     LoadLevel,
-    EndPanel
+    End
 }

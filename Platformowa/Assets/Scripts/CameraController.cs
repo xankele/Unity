@@ -25,4 +25,8 @@ public class CameraController : MonoBehaviour
 
 
 	}
+	public void Wypisz()
+	{
+		Debug.Log("Kurwa");
+	}
 }

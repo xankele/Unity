@@ -18,6 +18,5 @@ public class FallController : MonoBehaviour
         {
             transform.position = new Vector2(50.0f, 5.0f);
         }
-
     }
 }
