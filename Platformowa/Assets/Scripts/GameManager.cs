@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private GameObject _currentLevel;
     bool _isSwitchingState;
     public static GameManager Instance;
+    public SpriteRenderer render;
 
     State _state;
 
@@ -28,8 +29,14 @@ public class GameManager : MonoBehaviour
     {
         SwitchState(State.Play);
     }
+    public void ExitClicked()
+    {
+        Application.Quit();
+    }
     void Start()
     {
+        render = GetComponent<SpriteRenderer>();
+        render.enabled = false;
         rb = GetComponent<Rigidbody2D>();
         Instance = this;
         SwitchState(State.Start);
@@ -54,12 +61,13 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case State.Start:
+                render.enabled = false;
                 StartPanel.SetActive(true);
                 rb.constraints = RigidbodyConstraints2D.FreezePosition;
                 break;
             case State.Play:
+                render.enabled = true;
                 Level = 0;
-                //Player.SetActive(true);
                 SwitchState(State.LoadLevel);
                 break;
             case State.LoadLevel:

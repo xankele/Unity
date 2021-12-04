@@ -9,7 +9,8 @@ public class FInishLine : MonoBehaviour
     {
         if (collision.tag == "Finish")
         {
-            GetComponent<GameManager>().SwitchState(State.LevelCompleted);
+
+            GetComponent<GameManager>().SwitchState(State.LevelCompleted, 2f);
 
         }
     }

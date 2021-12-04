@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
     private Rigidbody2D _rb;
     private BoxCollider2D _boxCollider;
+    public AudioSource audio;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && isGrounded())
         {
             _rb.velocity = new Vector2(_rb.velocity.x, speed*2);
+            audio.Play();
         }
     }
     private bool isGrounded()
