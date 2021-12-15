@@ -811,6 +811,19 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 29338207}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &906953735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906953733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1439ab7d982b5364ea04a29cea0a4032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 906953733}
 --- !u!114 &906953741 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -1494956303386963422, guid: 390c4f0640d64494eaa50fcc328e0dab,
